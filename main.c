@@ -2,10 +2,23 @@
 #include <stdlib.h>
 #include "node.h"
 
-void print_tree(struct syntax_node * t)
+void print_tree(struct syntax_node * t, int deep)
 {
+  int i;
+  int j;
+  for(i = 0; i<deep*6;i++)
+  {
+    printf(" ");
+  }
+  printf("%s\n", t->kind_name);
 
+  for(i=0;i<10;++i)
+  {
+    if(t->child[i]!=NULL)
+      print_tree(t->child[i], deep+1);
+  }
 }
+
 struct token_node * get_token(FILE *fp)
 {
   struct token_node * head, *current, *tail;
@@ -43,5 +56,5 @@ main()
   struct syntax_node * t;
   t = parse(current_token);
 
-  print_tree(t);
+  print_tree(t, 0);
 }
