@@ -1,22 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "node.h"
 
-struct token_node
+void print_tree(struct syntax_node * t)
 {
-  char line_number[10];
-  char value[20];
-  struct token_node * next;
-};
 
-struct syntax_node
-{
-  struct syntax_node * child[3];
-  struct syntax_node * brother;
-
-  char kind_name[20];
-};
-
-struct token_node * get_token(FILE *f)
+}
+struct token_node * get_token(FILE *fp)
 {
   struct token_node * head, *current, *tail;
   head = tail = NULL;
@@ -24,9 +14,7 @@ struct token_node * get_token(FILE *f)
   while(!feof(fp))
   {
     current = (struct token_node*)malloc(sizeof(struct token_node));
-    fscanf(fp, "%s%s",  current->line_number, current->value);
-    // printf("line: %s\nword: %s\n", current->line_number, current->value);
-
+    fscanf(fp, "%s%s%s",  current->line_number, current->kind, current->value);
     while(fgetc(fp)!='\n'&&fgetc(fp)!=EOF)
     {
       fgetc(fp);
@@ -41,13 +29,13 @@ struct token_node * get_token(FILE *f)
   return head;
 }
 
+struct token_node * current_token;
 
 main()
 {
   FILE * fp;
   fp = fopen ("snl_token2","r");
 
-  struct token_node * current_token;
 
   current_token = get_token(fp);
   fclose(fp);
