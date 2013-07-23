@@ -1,22 +1,14 @@
-#include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
-#include "node.h"
+#include <stdio.h>
 
-void print_tree(struct syntax_node * t, int deep)
+struct token_node
 {
-  int i;
-  for(i = 0; i<deep*3;++i)
-  {
-    printf(" ");
-  }
-  printf("%s\n", t->kind_name);
-
-  for(i=0;i<10;++i)
-  {
-    if(t->child[i]!=NULL)
-      print_tree(t->child[i], deep+1);
-  }
-}
+  char line_number[10];
+  char kind[20];
+  char value[20];
+  struct token_node * next;
+};
 
 struct token_node * get_token(FILE *fp)
 {
@@ -37,25 +29,23 @@ struct token_node * get_token(FILE *fp)
     else
       tail = tail->next = current;
   }
-
   return head;
 }
 
-struct token_node * current_token;
-
+struct token_node *current_token;
 main()
 {
   FILE * fp;
   fp = fopen ("token","r");
 
-
   current_token = get_token(fp);
   fclose(fp);
 
-  struct syntax_node * t;
-  t = parse(current_token);
+  while(current_token->next!= NULL)
+  {
+    printf("%s\n",current_token->value);
+    current_token = current_token->next;
+  }
 
-  // printf("%s\n", t->child[0]->child[0]->child[0]->child[0]);
-  print_tree(t, 0);
-
+  printf("%s\n", current_token->value);
 }

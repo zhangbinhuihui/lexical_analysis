@@ -9,14 +9,14 @@ struct token_node
 
 struct syntax_node
 {
-  struct syntax_node * child[3];
-  struct syntax_node * brother;
+  struct syntax_node * child[10];
 
   char kind_name[20];
 };
 
 extern struct token_node * current_token;
 
+void chushihua_t(struct syntax_node *t);
 struct syntax_node * chenghao();
 struct syntax_node * chuhao();
 struct syntax_node * jiahao();

@@ -4,9 +4,10 @@
 #include "node.h"
 
 struct syntax_node * rev_begin(){
-  if(strcmp(current_token->kind, "begin") != 0)
+  if(strcmp(current_token->value, "begin") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "the word: %s should be \"begin\"!\n", current_token->value);
     fprintf(stderr, "miss key word \"begin\".\n");
     exit(1);
   }
@@ -14,15 +15,17 @@ struct syntax_node * rev_begin(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_end(){
-  if(strcmp(current_token->kind, "end") != 0)
+  if(strcmp(current_token->value, "end") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"end\".\n");
     exit(1);
   }
@@ -30,6 +33,7 @@ struct syntax_node * rev_end(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -39,12 +43,14 @@ struct syntax_node * rev_var(){
   if(strcmp(current_token->value, "var") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"var\".\n");
     exit(1);
   }
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -54,6 +60,7 @@ struct syntax_node * rev_procedure(){
   if(strcmp(current_token->value, "procedure") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"procedure\".\n");
     exit(1);
   }
@@ -61,6 +68,7 @@ struct syntax_node * rev_procedure(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -71,13 +79,16 @@ struct syntax_node * rev_base_type(){
      strcmp(current_token->value, "char"))
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"integer\" or \"char\".\n");
     exit(1);
   }
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
+  current_token = current_token->next;
   return t;
 }
 
@@ -85,6 +96,7 @@ struct syntax_node * rev_array(){
   if(strcmp(current_token->value, "array") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"array\".\n");
     exit(1);
   }
@@ -92,6 +104,7 @@ struct syntax_node * rev_array(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -101,6 +114,7 @@ struct syntax_node * rev_of(){
   if(strcmp(current_token->value, "of") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"of\".\n");
     exit(1);
   }
@@ -108,6 +122,7 @@ struct syntax_node * rev_of(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -117,6 +132,7 @@ struct syntax_node * rev_program(){
   if(strcmp(current_token->value, "program") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"program\".\n");
     exit(1);
   }
@@ -124,6 +140,7 @@ struct syntax_node * rev_program(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -133,6 +150,7 @@ struct syntax_node * rev_type(){
   if(strcmp(current_token->value, "type") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"type\".\n");
     exit(1);
   }
@@ -140,15 +158,17 @@ struct syntax_node * rev_type(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_if(){
-  if(strcmp(current_token->kind, "if") != 0)
+  if(strcmp(current_token->value, "if") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"if\".\n");
     exit(1);
   }
@@ -156,15 +176,17 @@ struct syntax_node * rev_if(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_then(){
-  if(strcmp(current_token->kind, "then") != 0)
+  if(strcmp(current_token->value, "then") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"then\".\n");
     exit(1);
   }
@@ -172,15 +194,17 @@ struct syntax_node * rev_then(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_else(){
-  if(strcmp(current_token->kind, "else") != 0)
+  if(strcmp(current_token->value, "else") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"else\".\n");
     exit(1);
   }
@@ -188,15 +212,17 @@ struct syntax_node * rev_else(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_fi(){
-  if(strcmp(current_token->kind, "fi") != 0)
+  if(strcmp(current_token->value, "fi") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"fi\".\n");
     exit(1);
   }
@@ -204,15 +230,17 @@ struct syntax_node * rev_fi(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_while(){
-  if(strcmp(current_token->kind, "while") != 0)
+  if(strcmp(current_token->value, "while") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"while\".\n");
     exit(1);
   }
@@ -220,15 +248,17 @@ struct syntax_node * rev_while(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_do(){
-  if(strcmp(current_token->kind, "do") != 0)
+  if(strcmp(current_token->value, "do") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"do\".\n");
     exit(1);
   }
@@ -236,15 +266,17 @@ struct syntax_node * rev_do(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_endwh(){
-  if(strcmp(current_token->kind, "endwh") != 0)
+  if(strcmp(current_token->value, "endwh") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"endwh\".\n");
     exit(1);
   }
@@ -252,15 +284,17 @@ struct syntax_node * rev_endwh(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_read(){
-  if(strcmp(current_token->kind, "read") != 0)
+  if(strcmp(current_token->value, "read") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"read\".\n");
     exit(1);
   }
@@ -268,15 +302,17 @@ struct syntax_node * rev_read(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_write(){
-  if(strcmp(current_token->kind, "write") != 0)
+  if(strcmp(current_token->value, "write") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"write\".\n");
     exit(1);
   }
@@ -284,15 +320,17 @@ struct syntax_node * rev_write(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * rev_return(){
-  if(strcmp(current_token->kind, "return") != 0)
+  if(strcmp(current_token->value, "return") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss key word \"return\".\n");
     exit(1);
   }
@@ -300,6 +338,7 @@ struct syntax_node * rev_return(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, "ConditionalStm");
   current_token = current_token->next;
   return t;
@@ -316,6 +355,7 @@ struct syntax_node * denghao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -332,6 +372,7 @@ struct syntax_node * dianhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -348,6 +389,7 @@ struct syntax_node * xiaoyuhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -364,6 +406,7 @@ struct syntax_node * jiahao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -380,6 +423,7 @@ struct syntax_node * jianhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -396,6 +440,7 @@ struct syntax_node * chenghao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -412,15 +457,17 @@ struct syntax_node * chuhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
 }
 
 struct syntax_node * fenhao(){
-  if(strcmp(current_token->kind, ";") != 0)
+  if(strcmp(current_token->value, ";") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right\n", current_token->value);
     fprintf(stderr, "miss fenhao \";\".\n");
     exit(1);
   }
@@ -428,6 +475,7 @@ struct syntax_node * fenhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -444,6 +492,7 @@ struct syntax_node * youfangkuo(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -460,6 +509,7 @@ struct syntax_node * shuangdian(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -475,6 +525,7 @@ struct syntax_node * intc(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -484,12 +535,14 @@ struct syntax_node * id(){
   if(strcmp(current_token->kind, "ID") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right\n", current_token->value);
     fprintf(stderr, "miss ID.\n");
     exit(1);
   }
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -506,6 +559,7 @@ struct syntax_node * zuofangkuo(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -515,6 +569,7 @@ struct syntax_node * zuokuohao(){
   if(strcmp(current_token->value, "(") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss zuokuohao \"(\".\n");
     exit(1);
   }
@@ -522,6 +577,7 @@ struct syntax_node * zuokuohao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -531,6 +587,7 @@ struct syntax_node * youkuohao(){
   if(strcmp(current_token->value, ")") != 0)
   {
     fprintf(stderr, "line %s has error!\n", current_token->line_number);
+    fprintf(stderr, "word %s not right!\n", current_token->value);
     fprintf(stderr, "miss youkuohao \")\".\n");
     exit(1);
   }
@@ -538,6 +595,7 @@ struct syntax_node * youkuohao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -554,6 +612,7 @@ struct syntax_node * douhao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
@@ -570,6 +629,7 @@ struct syntax_node * maodenghao(){
   struct syntax_node * t;
   t = (struct syntax_node*)malloc(sizeof(struct syntax_node));
 
+  chushihua_t(t);
   strcpy(t->kind_name, current_token->value);
   current_token = current_token->next;
   return t;
